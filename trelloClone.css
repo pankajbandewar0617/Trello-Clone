@@ -1,0 +1,78 @@
+body {
+    background-color: cadetblue;
+    background-size: cover;
+    height: 97.5vh;
+}
+
+#trello-board {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    overflow-y: hidden;
+}
+#popup{
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    overflow-y: hidden; 
+    min-height: 200px;
+}
+
+.title {
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+    font-family: sans-serif;
+}
+
+.list {
+    background-color: grey;
+    width: 250px;
+    font-size: large;
+    font-weight: bold;
+    padding: 6px 4px;
+    overflow-y: scroll;
+    border-radius: 8px;
+    margin: 10px;
+}
+.checklist{
+    background-color: #ffd9d5;
+    width: 450px;
+    font-size: large;
+    font-weight: bold;
+    padding: 6px 4px;
+    overflow-y: scroll;
+    border-radius: 8px;
+    margin: 10px; 
+}
+
+.card {
+    background-color: whitesmoke;
+    list-style-type: none;
+    font-size: 16px;
+    padding: 6px 8px 2px;
+    margin: 8px 4px;
+    border-radius: 6px;
+}
+
+.checkitem{
+    background-color: rgb(185, 185, 255);
+    width: 300px;
+    list-style-type: none;
+    font-size: 16px;
+    padding: 6px 8px 2px;
+    margin: 8px 4px;
+    border-radius: 6px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.update {
+    background-color: chartreuse;
+}
+
+.delete {
+    background-color: red;
+}
