@@ -203,9 +203,7 @@ function showcard(card) {
 function updateCard(e) {
     e.target.style.display = 'none';
     const idCard = e.target.parentNode.firstChild.id;
-    console.log(idCard)
     const card = e.target.parentNode;
-    console.log(card)
     const input = document.createElement('input');
     input.type = 'text';
     input.id = 'new-name';
@@ -235,7 +233,6 @@ function updateCard(e) {
 
 function deleteCard(e) {
     const id = e.target.parentNode.firstChild.id;
-    console.log(id)
     const deleteCardUrl = `https://api.trello.com/1/cards/${id}?key=${api}&token=${token}`;
 
     return fetch(deleteCardUrl, {
@@ -297,16 +294,20 @@ function archieveList(e) {
 
 // create checklist 
 
-var popupdiv = document.getElementById('popup');
+var popupdiv = document.getElementById('popupCheck');
 
 function popupEvent(e) {
+    const bg = e.target.parentNode.parentNode.parentNode;
+    const checklistdiv = document.createElement('div')
+    checklistdiv.id = 'popup';
+    popupdiv.appendChild(checklistdiv)
+    bg.style.opacity = 0.2;
     const cardID = e.target.id;
     getCheckList(cardID)
 }
 function getCheckList(cardID) {
     popupdiv.style.display = "block";
 
-    // console.log(cardID)
     const churl = `https://api.trello.com/1/cards/${cardID}/checklists?checkItems=all&key=${api}&token=${token}`;
     let result = fetch(churl)
         .then(res => res.json())
@@ -315,8 +316,9 @@ function getCheckList(cardID) {
 }
 
 function checklist(data, cardID) {
-    while (popupdiv.hasChildNodes()) {
-        popupdiv.removeChild(popupdiv.firstChild);
+    const checklistdiv = document.getElementById('popup');
+    while (checklistdiv.hasChildNodes()) {
+        checklistdiv.removeChild(checklistdiv.firstChild);
     }
     for (let list of data) {
         showchecklist(list)
@@ -331,7 +333,7 @@ function checklist(data, cardID) {
     addChecklistBtn.style.height = '20px'
     addChecklistBtn.style.margin = '10px'
     addChecklistBtn.addEventListener('click', showInputChecklist)
-    popupdiv.appendChild(addChecklistBtn)
+    checklistdiv.appendChild(addChecklistBtn)
 
     // close button
 
@@ -342,19 +344,27 @@ function checklist(data, cardID) {
     closebtn.style.margin = '10px'
 
     closebtn.addEventListener('click', close)
-    popupdiv.insertBefore(closebtn, addChecklistBtn)
+    checklistdiv.insertBefore(closebtn, addChecklistBtn)
     function close(e) {
-        let hide = e.target.parentNode
+        let hide = e.target.parentNode.parentNode
         hide.style.display = 'none'
+        const di = document.getElementById('trello-board')
+        di.style.opacity = 1;
+        while (popupdiv.hasChildNodes()) {
+            popupdiv.removeChild(popupdiv.firstChild);
+        }
     }
 }
-
-// window.onclick = function (event) {
-//     console.log(event)
-//     if (event.target == popupdiv) {
-//         popupdiv.style.display = "none";
-//     }
-// }
+const mainDiv = document.getElementById('trello-board')
+window.onclick = function (event) {
+    if (event.target == popupdiv) {
+        popupdiv.style.display = "none";
+        mainDiv.style.opacity = 1;
+        while (popupdiv.hasChildNodes()) {
+            popupdiv.removeChild(popupdiv.firstChild);
+        }
+    }
+}
 
 function showchecklist(task) {
     const checlist = document.getElementById('popup')
@@ -506,9 +516,7 @@ function deleteCheckList(e) {
 
 function updateCheckItem(e) {
     e.target.style.display = 'none'
-    // const idCheckList = e.target.parentNode.parentNode.id
     const idCheckItem = e.target.parentNode.id;
-    // console.log(e.target.parentNode)
 
     const card = document.getElementById(idCheckItem);
     const input = document.createElement('input');
@@ -545,7 +553,6 @@ function updateCheckList(e) {
     e.target.style.display = 'none';
     const idCheckList = e.target.parentNode.id
     const idCard = e.target.parentNode.parentNode.lastChild.id
-    console.log(idCard)
 
     const card = document.getElementById(idCheckList);
     const input = document.createElement('input');
