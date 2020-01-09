@@ -3,12 +3,16 @@ body {
   background-size: cover;
   height: 97.5vh;
 }
+/* header{
+  background-color: rgb(150,155,255);
+} */
 
 #trello-board {
   display: flex;
   flex-direction: row;
   overflow: auto;
   overflow-y: hidden;
+  margin-top: 10px ;
 }
 
 #popupCheck{
@@ -43,11 +47,12 @@ body {
 .title {
   text-align: center;
   font-size: xx-large;
-  color: white;
+  color: rebeccapurple;
   font-family: sans-serif;
 }
 
 .list {
+  position: -webkit-sticky;
   background-color: grey;
   width: 250px;
   font-size: large;

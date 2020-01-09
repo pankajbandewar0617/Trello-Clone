@@ -303,8 +303,9 @@ function popupEvent(e) {
     popupdiv.appendChild(checklistdiv)
     bg.style.opacity = 0.2;
     const cardID = e.target.id;
-    getCheckList(cardID)
+    getCheckList(cardID)    
 }
+
 function getCheckList(cardID) {
     popupdiv.style.display = "block";
 
